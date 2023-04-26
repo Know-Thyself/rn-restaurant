@@ -1,28 +1,50 @@
 import React, { useState } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, ScrollView } from 'react-native'
 import SearchBar from '../components/SearchBar'
 import useRestaurants from '../hooks/useRestaurants'
+import RestaurantsList from '../components/RestaurantsList'
 
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [restaurants, errorMessage, searchApi] = useRestaurants()
+  // console.log(JSON.stringify(restaurants, null, 2))
+  const filterRestaurantsByPrice = (price) => {
+    return restaurants.filter((res) => res.price === price)
+  }
 
   return (
-    <View>
+    <View style={styles.mainContainer}>
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         onTermSubmit={() => searchApi(searchTerm)}
       />
       {errorMessage && <Text style={styles.textStyle}>{errorMessage}</Text>}
-      <Text style={styles.textStyle}>
+      {/* <Text style={styles.textStyle}>
         We have found {restaurants.length} restaurants
-      </Text>
+      </Text> */}
+      <ScrollView>
+        <RestaurantsList
+          title='Cost Effective'
+          restaurants={filterRestaurantsByPrice('£')}
+        />
+        <RestaurantsList
+          title='Bit Pricier'
+          restaurants={filterRestaurantsByPrice('££')}
+        />
+        <RestaurantsList
+          title='Big Spender'
+          restaurants={filterRestaurantsByPrice('£££')}
+        />
+      </ScrollView>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    paddingBottom: 50,
+  },
   textStyle: {
     fontSize: 20,
     alignSelf: 'center',

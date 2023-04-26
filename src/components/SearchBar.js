@@ -29,9 +29,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#DCDCDC',
     borderRadius: 4,
     height: 40,
-    marginHorizontal: 20,
+    margin: 10,
     flexDirection: 'row',
-    marginTop: 10,
   },
   searchIcon: {
     marginHorizontal: 10,
