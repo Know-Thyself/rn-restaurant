@@ -9,7 +9,7 @@ export default () => {
     searchApi('restaurants')
   }, [])
 
-  const searchApi = async (term) => {
+  const searchApi = async term => {
     try {
       const response = await yelp.get('/search', {
         params: {

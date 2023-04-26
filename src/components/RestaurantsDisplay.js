@@ -1,14 +1,18 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, Pressable } from 'react-native'
 
-const RestaurantsDisplay = ({ restaurant }) => {
+const RestaurantsDisplay = ({ restaurant, navigation }) => {
   return (
-    <View style={styles.wrapper}>
-      <Image source={{ uri: restaurant.image_url }} style={styles.image} />
-      <Text style={styles.title}>{restaurant.name}</Text>
-      <Text>
-        {restaurant.rating} Stars, {restaurant.review_count} Reviews{' '}
-      </Text>
-    </View>
+    <Pressable
+      onPress={() => navigation.navigate('Selected', { id: restaurant.id })}
+    >
+      <View style={styles.wrapper}>
+        <Image source={{ uri: restaurant.image_url }} style={styles.image} />
+        <Text style={styles.title}>{restaurant.name}</Text>
+        <Text>
+          {restaurant.rating} Stars, {restaurant.review_count} Reviews{' '}
+        </Text>
+      </View>
+    </Pressable>
   )
 }
 

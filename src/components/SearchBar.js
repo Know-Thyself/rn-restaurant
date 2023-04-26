@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { TextInput, View, StyleSheet } from 'react-native'
 import { Fontisto } from '@expo/vector-icons'
 
@@ -17,7 +16,7 @@ const SearchBar = ({ searchTerm, setSearchTerm, onTermSubmit }) => {
         autoCapitalize='none'
         autoCorrect={false}
         placeholder='Search for nearby restaurants'
-        onChangeText={(val) => setSearchTerm(val)}
+        onChangeText={val => setSearchTerm(val)}
         onEndEditing={() => onTermSubmit()}
       />
     </View>

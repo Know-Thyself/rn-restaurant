@@ -1,8 +1,9 @@
 import React from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
 import RestaurantsDisplay from './RestaurantsDisplay'
+import { withNavigation } from 'react-navigation'
 
-const RestaurantsList = ({ title, restaurants }) => {
+const RestaurantsList = ({ title, restaurants, navigation }) => {
   return (
     <View style={styles.listWrapper}>
       <Text style={styles.titleStyle}>{title}</Text>
@@ -11,9 +12,11 @@ const RestaurantsList = ({ title, restaurants }) => {
         horizontal
         showsHorizontalScrollIndicator={false}
         data={restaurants}
-        keyExtractor={(res) => res.id}
+        keyExtractor={res => res.id}
         renderItem={({ item }) => {
-          return <RestaurantsDisplay restaurant={item} />
+          return (
+            <RestaurantsDisplay navigation={navigation} restaurant={item} />
+          )
         }}
       />
     </View>
@@ -32,4 +35,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default RestaurantsList
+export default withNavigation(RestaurantsList)

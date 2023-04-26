@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, View, StyleSheet, ScrollView } from 'react-native'
+import { Text, StyleSheet, ScrollView } from 'react-native'
 import SearchBar from '../components/SearchBar'
 import useRestaurants from '../hooks/useRestaurants'
 import RestaurantsList from '../components/RestaurantsList'
@@ -8,12 +8,12 @@ const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [restaurants, errorMessage, searchApi] = useRestaurants()
   // console.log(JSON.stringify(restaurants, null, 2))
-  const filterRestaurantsByPrice = (price) => {
-    return restaurants.filter((res) => res.price === price)
+  const filterRestaurantsByPrice = price => {
+    return restaurants.filter(res => res.price === price)
   }
 
   return (
-    <View style={styles.mainContainer}>
+    <>
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
@@ -37,13 +37,13 @@ const SearchScreen = () => {
           restaurants={filterRestaurantsByPrice('£££')}
         />
       </ScrollView>
-    </View>
+    </>
   )
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    paddingBottom: 50,
+    flex: 1,
   },
   textStyle: {
     fontSize: 20,
