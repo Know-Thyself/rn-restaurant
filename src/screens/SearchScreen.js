@@ -7,7 +7,6 @@ import RestaurantsList from '../components/RestaurantsList'
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [restaurants, errorMessage, searchApi] = useRestaurants()
-  // console.log(JSON.stringify(restaurants, null, 2))
   const filterRestaurantsByPrice = price => {
     return restaurants.filter(res => res.price === price)
   }
@@ -20,9 +19,6 @@ const SearchScreen = () => {
         onTermSubmit={() => searchApi(searchTerm)}
       />
       {errorMessage && <Text style={styles.textStyle}>{errorMessage}</Text>}
-      {/* <Text style={styles.textStyle}>
-        We have found {restaurants.length} restaurants
-      </Text> */}
       <ScrollView>
         <RestaurantsList
           title='Cost Effective'

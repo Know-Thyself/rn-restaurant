@@ -4,10 +4,13 @@ import RestaurantsDisplay from './RestaurantsDisplay'
 import { withNavigation } from 'react-navigation'
 
 const RestaurantsList = ({ title, restaurants, navigation }) => {
+  if (!restaurants.length) {
+    return null
+  }
+
   return (
     <View style={styles.listWrapper}>
       <Text style={styles.titleStyle}>{title}</Text>
-      {/* <Text>{restaurants.length} restaurants</Text> */}
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
